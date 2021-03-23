@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Admin UsersInfo</title>
+    </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .nava{
+        position: fixed;
+        z-index: 1;
+        width:100%;
+        background-color: rgb(119, 0, 73);
+    }
+    .nla:hover{
+    position:relative;
+    top:-20%;
+    }
+    li{
+      position: relative;
+      letter-spacing:0.2em;
+      padding-right:60px;
+      right:20%;
+      list-style-type: none;
+    }
+</style>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark nava">
+            <a class="navbar-brand text-warning" href="#" style="font-weight: bolder;"> PR HOTELS</a>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto " style="margin-left:50%;">
+                <li class="nav-item active">
+                    <a class="nav-link nla" href="/homeAdmin/next/ins" style="color:whitesmoke">HOME</a>
+                  </li>
+                <li class="nav-item active">
+                  <a class="nav-link nla" href="#booked" style="color:whitesmoke">BOOKED ROOMS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nla" href="#avail" style="color:whitesmoke">AVAILABLE ROOMS</a>
+                </li> 
+              </ul>
+            </div>
+          </nav><br><br><br><br>
+
+    <section id="booked">
+            <% var a1=[],a2=[]
+            let c=1
+            function table1(rn,vid,uid){
+                if(c==1) { %>
+                    <table class='table container-fluid'>
+                        <tr><h2 style="text-align: center;">BOOKED ROOMS</h2></tr>
+                        <tr class='text-light' style='background-color: black;'>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Gmail</th>
+                            <th>Mobile Number</th>
+                            <th>Room Number</th>
+                            <th>Variant Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>VACATE</th>
+                            <th>UPDATE</th>
+                            <th>TO DATE</th>
+                        </tr>
+                    <% } %>
+                <tr class='text-light' style='background:linear-gradient(90deg, rgb(117, 8, 59) 0%, rgb(12, 142, 193) 42%, rgb(192, 157, 2) 100%);'>
+                    <td><%= c %></td>
+                    <td><%= userInfo[uid-1].name %></td>
+                    <td><%= userInfo[uid-1].gmail %></td>
+                    <td><%= userInfo[uid-1].mobileNumber %></td>
+                    <td><%= rn %></td>
+                    <% let a='AC'
+                    if(inse1[vid-1].roomTypeId==2)a='Non AC' %>
+                    <td><%= inse1[vid-1].variant+' '+a %></td>
+                    <td><%= bookDet[uid-1].fromd %></td>
+                    <td><%= bookDet[uid-1].tod %></td>
+                    <td>
+                    <a href="/adminUserInfo/delete/<%= rn %>/<%= uid %>/numOfVariant<%= vid %>" style="margin-left:20%;">
+                        <button >VACATE</button>
+                    </a>
+                    <form action="/adminUserInfo/extend/<%= uid %>" method="post">
+                    <td><button type="submit">UPDATE</button></td>
+                    <td><input type="date" name='date' required></td>
+                    </form>
+                    </td>
+                </tr>
+            <%  c++ } %>
+        </table>
+    </section>
+
+    <section id="avail">
+        <% let c1=1
+        function table2(rn,vid){
+            if(c1==1) { %>
+                <table class='table container'>
+                    <tr><h2 style="text-align: center;">AVAILABLE ROOMS</h2></tr> 
+                    <tr class='text-light' style='background-color: black;'>
+                        <th>ID</th>
+                        <th>Room Number</th>
+                        <th>Variant Type</th>
+                    </tr>
+                <% } %>
+            <tr class='text-light' style='background:linear-gradient(90deg, rgb(117, 8, 59) 0%, rgb(12, 142, 193) 42%, rgb(192, 157, 2) 100%);'>
+                <td><%= c1 %></td>
+                <td><%= rn %></td>
+                <% let a='AC'
+                if(inse1[vid-1].roomTypeId==2)a='Non AC' %>
+                <td><%= inse1[vid-1].variant+' '+a %> </td>
+            </tr>
+        
+        <% c1++ } %>
+        </table>
+    </section>
+
+           <% for(let i=0;i<inse2.length;i++){
+                if(inse2[i].roomStatusId==2) {
+                    a1.push(i);
+                }
+                else{
+                    a2.push(i);
+                }
+            }
+            for(let j=0;j<a1.length;j++){
+                table1(inse2[a1[j]].roomNumber,inse2[a1[j]].roomVariantId,inse2[a1[j]].userId);
+            }
+           for(let k=0;k<a2.length;k++){
+                table2(inse2[a2[k]].roomNumber,inse2[a2[k]].roomVariantId);
+            }
+
+        %>
+        
+
+
+    </body>
+</html>

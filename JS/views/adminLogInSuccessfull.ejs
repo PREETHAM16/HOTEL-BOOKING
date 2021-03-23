@@ -1,0 +1,291 @@
+<html>
+    <head>
+        <title>Admins Home</title>
+    </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+         body{
+   margin-bottom:-3%;
+ }
+    .nava{
+        position: fixed;
+        z-index: 1;
+        width:100%;
+        background-color: rgb(119, 0, 73);
+    }
+    li{
+      position: relative;
+      letter-spacing:0.3em;
+      padding-right:30px;
+      right:20%;
+      list-style-type: none;
+    }
+    .nla{
+        text-decoration: none;
+    }
+    .nla:hover{
+    position:relative;
+    top:-20%;
+    }
+    th{
+        margin:0 -5%;
+        background-color:black;
+        color: whitesmoke;
+    }
+    .card{
+     background: linear-gradient(90deg, rgb(6, 65, 121) 0%, rgb(11, 118, 151) 42%, rgb(6, 192, 145) 100%);
+    }
+    h2{
+        color: rgb(119, 0, 73);
+        text-align: center;
+    }
+    h1{
+        margin-left:15%;
+        margin-top:5%;
+    }
+    </style>
+        <% function dropVariant(){ %>
+            <select name='variantId' required>
+                <% let j 
+                for(j=0;j<inse1.length;j++){
+                let a='NAC';
+                if(inse1[j].roomTypeId==1)
+                       a='AC';                                  
+                 %>
+                <option value=<%= j+1 %> ><%= inse1[j].variant+' '+a  %></option>
+                <% } %>
+            </select>
+      <%  } %>
+        <nav class="navbar navbar-expand-lg navbar-dark nava">
+            <a class="navbar-brand text-warning" href="#" style="font-weight: bolder;"> PR HOTELS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto " style="margin-left:50%;">
+                <li class="nav-item active">
+                  <a class="nav-link nla" href="#home" style="color:whitesmoke">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nla" href="#create" style="color:whitesmoke">CREATE</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link nla" href="#update" style="color:whitesmoke">UPDATE</a>
+                </li> 
+                <li class="nav-item ">
+                  <a class="nav-link nla" href="#delete" style="color:whitesmoke">DELETE</a>
+                </li>
+             
+                <li class="nav-item ">
+                  <a class="nav-link nla" href="/homeAdmin/usersInfo">USERS INFO</a>
+                </li>
+              </ul>
+            </div>
+          </nav><br><br><br><br>
+          <section id="home">
+            <h1>EXISTING TABLE</h1>
+            <table class="table container">
+                <tr>
+                    <th>ID</th>
+                    <th>Room Number</th>
+                    <th>Variant Type</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Facilities</th>
+                </tr>
+                <% var rooms=[]  %>
+                <% for(let k=0;k<inse1.length;k++){
+                     rooms[k]='';
+                 }
+                 %>
+                <% for(let k=0;k<inse1.length;k++){
+                     for(let j=0;j<inse2.length;j++){
+                         if(inse2[j].roomVariantId==k+1)
+                            rooms[k]+=inse2[j].roomNumber+' ';
+                     }
+                }
+                %>
+                <%  for(let it=0;it<inse1.length;it++) { %>
+                    <% let al='NAC' %>
+                <tr class='text-light' style='background: linear-gradient(90deg, rgb(117, 8, 59) 0%, rgb(12, 142, 193) 42%, rgb(192, 157, 2) 100%)'>
+                    <td><%= it+1 %></td>
+                    <% if(inse1[it].roomTypeId==1)al='AC'; %>
+                    <td><%= rooms[it] %></td>
+                    <td><%= inse1[it].variant %> <%= al %></td>
+                    <td><%= inse1[it].price %></td>
+                    <td><%= inse1[it].description %></td>
+                    <td><%= inse1[it].facilities %></td>
+                </tr>
+            <% } %>
+            </table>
+          </section><br><br>
+          <section id="create">
+            <h1>CREATE</h1><br><br>
+            <h2 >Variant , Price and Facilities</h2><br>
+            <div class='card container'>
+                <form action="/curd/insert/VPF" method="post">
+                    <table class="table">
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Variant</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="type" name="typeId" required>
+                                    <option value=1>AC</option>
+                                    <option value=2>NAC</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="variant" required></td>
+                            <td><input type="Number" name="price" required></td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th>Description</th>
+                            <th>Facilities</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="textbox" name='description' required></td>
+                            <td><input type="text" name='facilities' required></td>
+                            <td><button type="submit" class="btn btn-warning">CREATE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+
+            <h2>New Room Creation</h2>
+            <div class='card container'>
+                <form action="/curd/insert/roomNumber" method="post">
+                    <table class="table">
+                        <tr>
+                            <th>Room Number</th>
+                            <th>Room Variant</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" pattern=^[0-9]{3}(,[0-9]{3})*$ name="roomNo" placeholder="EX.101,102...." autocomplete="off" required></td>
+                            <td>
+                                <% dropVariant() %>
+                            </td>
+                            <td><input type="text" value='AVAILABLE' readonly required></td>
+                            <td><button type="submit" class="btn btn-warning">INSERT</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div><br><br>
+
+        </section><br><br><br><br>
+
+
+
+
+
+        <section id="update">
+            <h1>UPDATE</h1><br>
+            <h2>Make Price Change</h2>
+            <div class='card container'>
+                <form action="/curd/update/variantPrice" method="post">
+                    <table class="table">
+                        <tr>
+                            <th>Room Price</th>
+                            <th>Room Variant</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="Number" name="price"  required></td>
+                            <td>
+                                    <% dropVariant() %>
+                            </td>
+                            <td><button type="submit" class="btn btn-warning">UPDATE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div><br><br><br>
+
+            <h2>Variant Change in Room Number</h2>
+            <div class='card container'>
+                <form action="/curd/update/roomNumberVariant" method="post">
+                    <table class="table">
+                        <tr>
+                            <th>Room Number</th>
+                            <th>Room Variant</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" pattern=^[0-9]{3}(,[0-9]{3})*$ name='roomNo' autocomplete='off' required></td>
+                            <td>
+                                <% dropVariant() %>
+                            </td>
+                            <td><button type="submit" class="btn btn-warning">UPDATE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div><br><br>
+            <h2>Update Facilities Of Room Variant</h2>
+            <div class='card container'>
+                <form action="/curd/update/facilities" method="post">
+                    <table class="table">
+                        <tr>
+                            <th>Description</th>
+                            <th>Facilities</th>
+                            <th>Room Variant</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="textbox" name='description' required></td>
+                            <td><input type="text" name='facilities'></td>
+                            <td><% dropVariant() %></td>
+                            <td><button type="submit" class="btn btn-warning">UPDATE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div><br><br><br>
+        </section><br><br><br><br>
+
+        <section id="delete">
+            <h1>DELETE</h1><br>
+            <h2>Variant Deletion</h2>
+            <div class='card container'>
+                <form action="/curd/delete/VPF" method='post'>
+                    <table class="table">
+                        <tr>
+                            <th>Variant</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><% dropVariant() %></td>
+                            <td><button type="submit" class="btn btn-warning">DELETE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div><br><br><br><br>
+
+            <h2>Room Number Deletion</h2>
+            <div class='card container'>
+                <form action="/curd/delete/roomNumber" method='post'>
+                    <table class="table">
+                        <tr>
+                            <th>Room Number</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" pattern=^[0-9]{3}(,[0-9]{3})*$ name='roomNumber' required></td>
+                            <td><button type="submit" class="btn btn-warning">DELETE</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+
+
+</html>

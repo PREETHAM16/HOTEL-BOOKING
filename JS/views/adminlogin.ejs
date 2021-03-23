@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hotel Booking</title>
+    </head>
+    <style>
+        h1{
+            color:rgb(255, 155, 5);
+        }
+        span{
+            color:red;
+            font-size: 130%;
+        }
+        body{
+        text-align:center;
+        margin:5% 0;
+        background:url('./hotlbg.png');
+        background-size:cover;
+        }
+        input{
+            width:25%;
+            height:50px;
+            font-size: large;
+            background:transparent;
+            border:3px solid white;
+            color:greenyellow;
+            border-radius:20px ;
+            outline:none;   
+            text-align: center;
+        }
+        ::placeholder{
+                color:black;
+                opacity:0.7;
+            }
+        button{
+            font-size: large;
+            letter-spacing:2px;
+            background-color:greenyellow;
+            width:15%;
+            height:50px;
+        box-shadow: 3px 3px black;
+        cursor:pointer;
+        border-radius: 2em;
+        outline:none;
+        }
+        a{
+            font-size: 150%;
+            text-decoration: none;
+            background-color: black;
+            opacity: 0.7;
+            color: violet;
+        }
+    </style>
+    <body>
+        <h1>HOTEL PR WELCOMES YOU</h1>
+        <br><br>
+        <form action='/homeAdmin/next' method='post'>
+            <input type='text' name='user_lname'  placeholder='AdminName' >
+            <br><br>
+            <input type='password' name='user_lpassword'  placeholder='Password' >
+            <br><br>
+            <span><%= incorrect %></span>
+            <br><br>
+            <button type='submit'>Submit</button>
+            <br><br>
+        </form>  
+    </body>
+</html>

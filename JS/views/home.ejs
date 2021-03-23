@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hotel Booking</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+ body{
+   margin-bottom:-3%;
+ }
+    .nava{
+        position: fixed;
+        z-index: 1;
+        width:100%;
+    }
+    li{
+      position: relative;
+      letter-spacing:0.3em;
+      padding-right:30px;
+      right:20%;
+    }
+ .nla:hover{
+  position:relative;
+  top:-20%;
+ }
+.fix{
+  position: relative;
+  width:100%;
+  top:5%;
+  height:750px;
+  }
+.h1{
+    color:red;
+}
+.h3{
+    color:black;
+}
+.bsa{
+        background:url("tables.jpg");
+        height:350px;
+        width:40%;
+        position: absolute;
+        right:52%;
+      }
+.bsb{
+        background:url("room.jpeg");
+        height:350px;
+        width:40%;
+        position: absolute;
+        left:52%;
+        float:right;
+      }
+.bsh1{
+    position: relative;
+        color:black;
+        left:5%;
+}
+.bs{
+
+    width:100%;
+    height:500px;
+}
+.scrolling-active{
+      background-color:rgb(0, 0, 0);
+      box-shadow:0 3px 1rem rgba(0,0,0,.1);
+    }
+ 
+</style>
+<body>
+<section  id="home" > 
+    <nav class="navbar navbar-expand-lg navbar-dark nava">
+        <a class="navbar-brand text-warning" href="#" style="font-weight: bolder;"> PR HOTELS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto " style="margin-left:50%;">
+            <li class="nav-item active text-warning">
+              <a class="nav-link nla" href="#home" style="color:white">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nla" href="#bookingSection" style="color:white">Booking</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link nla" href="#pricing" style="color:white">Pricing</a>
+            </li> 
+            <li class="nav-item ">
+              <a class="nav-link nla" href="#about" style="color:white">About</a>
+            </li>
+         
+            <li class="nav-item ">
+              <a class="nav-link nla" href="#contact" style="color:white">Contact</a>
+            </li>
+          </ul>
+
+          <span class="navbar-text text-danger" style="position: relative">
+            Sign Up
+          </span>
+        </div>
+      </nav>
+
+     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators" style="margin-left:35%">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="fix" src="img 1.jpeg"  alt="First Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="fix" src="img 2.jpg"  alt="Second Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="fix" src="img 3.jpeg" alt="Third Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="fix" src="img 4.jpg"  alt="fourth Slide">
+            </div>
+            <div class="carousel-item">
+                <img  class="fix"src="img 5.jpg"  alt="fifth Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="fix" src="img 6.jpeg"  alt="sixth Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</section>
+
+<br><br>
+
+    <section id='bookingSection'>
+        <div class='container bs'>
+    <h1 class="h1" style="text-align: center;">Booking Section</h1><br>
+        <div class="bsa">
+          <h1 class="bsh1"><strong>TABLE BOOKING</strong></h1>
+        </div>
+        <a href="/roomBooking">
+        <div class="bsb">
+            <h1 class="bsh1"><strong>ROOM BOOKING</strong></h1>
+        </div>
+        </a>
+    </div>
+    </section>
+
+    <section id='pricing'>
+      <br><br>
+      <h1 class="h1" style="text-align:center;">DETAIL STRUCTURE OF ROOMS</h1>
+      <table class='table container'  >
+        <thead>
+            <tr style="height:60px;background-color:black;color:white;">
+                <th>TYPES</th>
+                <th>PRICE</th>
+                <th>DESCRIPTION</th>
+                <th>FACILITIES</th>
+            </tr>
+        </thead>
+        <tbody>
+          <%  for(let i=0;i<inse1.length;i++) { 
+            let a='NON AC'
+            if(inse1[i].roomTypeId==1)a='AC' %>
+            <tr  style='background: linear-gradient(90deg, rgb(117, 8, 59) 0%, rgb(12, 142, 193) 42%, rgb(192, 157, 2) 100%);color:white;'>
+                <td><%= inse1[i].variant+' '+a %></td>
+                <td><%= inse1[i].price %></td>
+                <td><%= inse1[i].description %></td>
+                <td><%= inse1[i].facilities %></td>
+            </tr>   
+            <% } %>                  
+        </tbody>
+    </table><br><br>
+    </section>
+    <section id="about" >
+      <div class="container">
+        <br><br>
+      <h1 class="h1">PR Palace<h1>
+      <h3 class="h3">Welcomes you to Turkey’s famed Riviera with 5-star sophistication, award-winning service and a picture-perfect location<br><br>
+      You’ll find our luxury all-inclusive hotel in Antalya, on the shores of the Mediterranean Sea<br><br>
+      acres of sparkling, lagoon-style pools extend to a private sandy beach, while splendid resort architecture reflects some of Istanbul’s most noteworthy points of interest<br><br>
+      From the stately Dolmabahçe Lobby, with its palatial design and striking glass ceiling, to the sumptuous and meticulously appointed accommodation , everything here is crafted to delight and inspire<br><br>
+       Our golden all-inclusive dining  concept encompasses over 30 acclaimed restaurants, bar and lounges <br><br>
+        leisure activities include a KLAFS-designed spa, Tini Kids Club, sports and entertainment programs and a nearby championship golf course<br><br>
+        Resort consist's of 20 luxurious bedroom.
+  </div>
+      </section>
+</body><br><br>
+<footer>
+  <section id="contact">
+    <div class="container-fluid"style="background-color:black">
+      <h1 class="text-info" style="text-align: center;">CONTACT US FOR ANY QUERIES</h1>
+      <h1 style="margin:2%">
+      <i style="background: white;color:black;margin-left:15%"class="fa fa-mobile" aria-hidden="true"></i>
+      <i style="background:white;color:blue;margin-left:15%" class="fa fa-facebook-square" aria-hidden="true"></i>
+      <i style="background:green;color:white;margin-left:15%" class="fa fa-whatsapp" aria-hidden="true"></i>
+      <i id="instagram" style="color:maroon;margin-left:15%" class="fa fa-instagram" aria-hidden="true"></i>
+      <i style="color:blue;margin-left:15%" class="fa fa-twitter" aria-hidden="true"></i>
+      <h1>
+    </div>
+</section>
+</footer>
+<script type="text/javascript">
+  window.addEventListener('scroll',function(){
+  var navbar=document.querySelector(".nava");
+    navbar.classList.toggle('scrolling-active',window.scrollY>600);
+  
+  })
+    </script>
+</html>
