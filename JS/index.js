@@ -102,7 +102,7 @@ function mailIt(otp,ud){
         for(let k=0;k<ud[2].length;k++){
             let a='Non AC';
             if(ud[0][ud[2][k].roomVariantId-1].roomTypeId==1)a='AC'
-            s+=ud[0][ud[2][k].roomVariantId-1].variant+' '+a+'    '+'Room '+ud[2][k].roomNumber+' '+ins1[ud[2][k].roomVariantId-1].price+'<br><br>';
+            s+=ud[0][ud[2][k].roomVariantId-1].variant+' '+a+'    '+'Room '+ud[2][k].roomNumber+' '+'('+ins1[ud[2][k].roomVariantId-1].price+'Rs )'+'<br><br>';
         }
         console.log('s',s);
         var mailOptions = {
